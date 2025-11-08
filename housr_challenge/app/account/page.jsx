@@ -57,9 +57,9 @@ export default function AccountPage() {
 
   const currentTier = tierConfig[userData.tier];
   const tierProgress = currentTier.max === Infinity ? 100 : 
-    ((userData.total_spent - currentTier.min) / (currentTier.max - currentTier.min)) * 100;
+    ((userData.wallet_spent - currentTier.min) / (currentTier.max - currentTier.min)) * 100;
   const remainingToNextTier = currentTier.max === Infinity ? 0 : 
-    currentTier.max - userData.total_spent;
+    currentTier.max - userData.wallet_spent;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -74,7 +74,7 @@ export default function AccountPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
             <div className="text-sm font-medium text-gray-600 mb-2">Current Balance</div>
-            <div className="text-3xl font-bold text-gray-900">£{userData.balance.toFixed(2)}</div>
+            <div className="text-3xl font-bold text-gray-900">£{userData.wallet_balance.toFixed(2)}</div>
             <div className="text-sm text-gray-500 mt-1">Available credits</div>
           </div>
 
@@ -92,7 +92,7 @@ export default function AccountPage() {
 
           <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
             <div className="text-sm font-medium text-gray-600 mb-2">Total Spent</div>
-            <div className="text-3xl font-bold text-gray-900">£{userData.total_spent.toFixed(0)}</div>
+            <div className="text-3xl font-bold text-gray-900">£{userData.wallet_spent.toFixed(0)}</div>
             <div className="text-sm text-gray-500 mt-1">All time</div>
           </div>
         </div>
@@ -106,7 +106,7 @@ export default function AccountPage() {
                 <div>
                   <div className="text-2xl font-bold text-gray-900">{userData.tier} Tier</div>
                   <div className="text-sm text-gray-600 mt-1">
-                    £{userData.total_spent.toFixed(0)} total spent
+                    £{userData.wallet_spent.toFixed(0)} total spent
                   </div>
                 </div>
                 <div className="text-right">
@@ -195,13 +195,13 @@ export default function AccountPage() {
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-medium text-gray-700">Savings Rate</span>
                     <span className="text-sm font-semibold text-gray-900">
-                      {((userData.total_earned / userData.total_spent) * 100).toFixed(1)}%
+                      {((userData.total_earned / userData.wallet_spent) * 100).toFixed(1)}%
                     </span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
                     <div 
                       className="bg-blue-600 h-full rounded-full"
-                      style={{ width: `${Math.min((userData.total_earned / userData.total_spent) * 100, 100)}%` }}
+                      style={{ width: `${Math.min((userData.total_earned / userData.wallet_spent) * 100, 100)}%` }}
                     ></div>
                   </div>
                 </div>
