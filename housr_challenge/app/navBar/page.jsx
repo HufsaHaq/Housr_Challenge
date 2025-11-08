@@ -11,7 +11,7 @@ export default function Navbar() {
 
 	// Navigation items array
 	const navItems = [
-		{ name: "Housr Cherry", href: "/" },
+		// { name: "Housr Cherry", href: "/" },
 		{ name: "Sponsors", href: "/sponsors" },
 		{ name: "Payments", href: "/payments" },
 		{ name: "Rewards", href: "/rewards" },
@@ -30,7 +30,7 @@ export default function Navbar() {
 						<svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
 							<path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
 						</svg>
-						<span className="font-bold text-xl">Housr</span>
+						<span className="font-bold text-xl">Housr Cherry</span>
 					</Link>
 
 					{/* Desktop Navigation */}
