@@ -1,0 +1,47 @@
+{
+  "users": {
+    "student123": {
+      "id": "student123",
+      "name": "Alex Johnson",
+      "email": "alex.j@university.ac.uk",
+      "balance": 0,
+      "total_spent": 0,
+      "total_earned": 0,
+      "payment_streak": 0,
+      "tier": "Bronze"
+    }
+  },
+  "transactions": [],
+  "perks": [
+    {
+      "id": 1,
+      "name": "Costa Coffee \u00a35 Voucher",
+      "cost": 50,
+      "category": "Food"
+    },
+    {
+      "id": 2,
+      "name": "Gym Pass - 1 Week",
+      "cost": 100,
+      "category": "Fitness"
+    },
+    {
+      "id": 3,
+      "name": "Cinema Ticket",
+      "cost": 75,
+      "category": "Entertainment"
+    },
+    {
+      "id": 4,
+      "name": "Amazon \u00a310 Voucher",
+      "cost": 100,
+      "category": "Shopping"
+    },
+    {
+      "id": 5,
+      "name": "Spotify Premium - 1 Month",
+      "cost": 120,
+      "category": "Entertainment"
+    }
+  ]
+}
