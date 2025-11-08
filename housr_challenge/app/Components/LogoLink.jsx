@@ -1,15 +1,21 @@
 import Link from "next/link";
 
-export default function LogoLink() {
+export default function LogoLink({scale = 1}) {
   return (
-    <div style={{ opacity: 1, transform: "none" }}>
-      <Link href="/uk" className="mt-3" aria-label="Go to UK">
+    <div style={{
+        opacity: 1,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        transform: `scale(${scale})`,
+        transition: "transform 0.3s"
+      }}>
+      <Link href="https://www.housr.com/uk" className="mt-3" aria-label="Go to UK">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="114"
           height="24"
           fill="#fff"
-          role="img"
           viewBox="0 0 114 24"
         >
           <path
