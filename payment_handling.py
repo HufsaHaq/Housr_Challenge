@@ -107,7 +107,18 @@ def load_data():
                 'lng': -2.2348,
                 'offers': 'Buy 2 get 1 free',
                 'phone': '0161 228 6688'
+            },
+            {
+                'id': 9,
+                'name': 'Pendulum Hotel',
+                'category': 'Hotels & Accommodation',
+                'address': 'Sackville St, Manchester M1 3BB',
+                'lat': 53.4740,
+                'lng': -2.2300,
+                'offers': '5% off student rooms',
+                'phone': '0161 955 8000'
             }
+
         ]
     }
 

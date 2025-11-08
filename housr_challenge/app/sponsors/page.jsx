@@ -112,7 +112,7 @@ export default function SponsorsPage() {
     if (!loading && sponsors.length > 0) {
       // Load Google Maps script
       const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=`;
       script.async = true;
       script.defer = true;
       script.onload = () => {
