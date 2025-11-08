@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Project — Starter</title>
+  <meta name="description" content="A minimal, accessible HTML starter template." />
+
+  <!-- Favicons (replace with your files) -->
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- Basic SEO / social preview -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Project — Starter" />
+  <meta property="og:description" content="A minimal, accessible HTML starter template." />
+
+  <!-- A small CSS reset + variables -->
+  <style>
+    /* ---- tiny reset ---- */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;line-height:1.5;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; -webkit-font-smoothing:antialiased}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:underline}
+    button{font:inherit}
+
+    /* ---- design tokens ---- */
+    :root{
+      --bg: #FFFFFF;
+      --text: #0f1724;
+      --muted: #6b7280;
+      --accent: #0ea5a4;
+      --radius: 12px;
+      --container: 1100px;
+      --gap: 1rem;
+    }
+    [data-theme="dark"]{
+      --bg:#0b1220; --text:#e6eef6; --muted:#9aa6b2; --accent:#2dd4bf;
+    }
+
+    /* ---- layout ---- */
+    .page {
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      background: linear-gradient(180deg, var(--bg), color-mix(in srgb, var(--bg) 95%, #f8fafc));
+      color:var(--text);
+    }
+    .container{
+      width:100%;
+      max-width:var(--container);
+      margin:0 auto;
+      padding:0 1rem;
+    }
+
+    header{
+      padding:1rem 0;
+      border-bottom:1px solid rgba(0,0,0,0.05);
+      background:transparent;
+      backdrop-filter: blur(4px);
+    }
+
+    nav {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:var(--gap);
+    }
+    .brand { font-weight:700; letter-spacing:-0.02em; display:flex; align-items:center; gap:.5rem; }
+    .nav-links { display:flex; gap:1rem; align-items:center; }
+    .nav-links a { padding:.35rem .5rem; border-radius:8px; text-decoration:none; }
+    .nav-links a:hover { background:rgba(0,0,0,0.03); }
+
+    main { flex:1; padding:2rem 0; }
+    footer { padding:1.25rem 0; text-align:center; border-top:1px solid rgba(0,0,0,0.04); color:var(--muted); font-size:.95rem; }
+
+    /* ---- utility grid ---- */
+    .grid { display:grid; gap:1rem; grid-template-columns: repeat(12, 1fr); }
+    .col-8 { grid-column: span 8; }
+    .col-4 { grid-column: span 4; }
+    @media (max-width:900px){
+      .grid{ grid-template-columns: repeat(6, 1fr); }
+      .col-8 { grid-column: span 6; }
+      .col-4 { grid-column: span 6; }
+      nav { flex-direction:column; align-items:flex-start; gap:.5rem; }
+    }
+
+    /* ---- card / form ---- */
+    .card {
+      background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 98%, #fff) , var(--bg));
+      border-radius: var(--radius);
+      box-shadow: 0 6px 18px rgba(10,20,30,0.06);
+      padding:1.25rem;
+      border:1px solid rgba(10,20,30,0.04);
+    }
+    label { display:block; font-weight:600; margin-bottom:0.25rem; color:var(--text) }
+    input[type="text"], input[type="email"], textarea {
+      width:100%; padding:.6rem .75rem; border-radius:10px; border:1px solid rgba(0,0,0,0.08); background:transparent;
+      color:var(--text);
+    }
+    .btn {
+      display:inline-flex; gap:.5rem; align-items:center; padding:.55rem .85rem; border-radius:10px; border:0; cursor:pointer;
+      background:var(--accent); color:white; font-weight:600;
+    }
+
+    /* focus states (accessibility) */
+    :focus { outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent); border-radius:8px; }
+
+    /* skip link (visible on focus) */
+    .skip-link {
+      position:absolute; left:0; top:-40px; background:#111827; color:#fff; padding:.5rem .75rem; z-index:1000; border-radius:6px;
+      transition: top .15s ease;
+    }
+    .skip-link:focus { top:10px; }
+  </style>
+</head>
+<body class="page" data-theme="light">
+  <!-- Skip link for keyboard users -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="container" role="banner">
+    <nav aria-label="Primary" >
+      <div class="brand" aria-hidden="false">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-opacity="0.12"></circle>
+          <path d="M6 12h12" stroke="currentColor" stroke-width="1.5"></path>
+        </svg>
+        <span>Project</span>
+      </div>
+
+      <div class="nav-links" role="navigation" aria-label="Top">
+        <a href="description.html">Abour Us</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+        <button id="themeToggle" aria-pressed="false" title="Toggle color theme" class="btn" type="button">Toggle theme</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="container" role="main" tabindex="-1">
+    <section style="margin-bottom:1.25rem">
+      <h1 style="margin:0 0 .25rem 0; font-size:clamp(1.5rem, 3.6vw, 2rem)">Starter template — build quickly</h1>
+      <p style="margin:0; color:var(--muted)">A minimal starting point with accessibility, responsive layout and a small JS enhancement.</p>
+    </section>
+
+    <section class="grid" aria-labelledby="featuresHeading">
+      <div class="col-8">
+        <article class="card" aria-labelledby="featuresHeading">
+          <h2 id="featuresHeading" style="margin-top:0">Features</h2>
+          <ul>
+            <li>Semantic HTML5 (header, main, article, footer)</li>
+            <li>Accessible skip link + focus states</li>
+            <li>CSS variables for easy theming</li>
+            <li>Responsive grid and mobile-first breakpoints</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="col-4">
+        <div class="card" id="contact" aria-labelledby="contactHeading">
+          <h3 id="contactHeading" style="margin-top:0">Contact</h3>
+          <form id="contactForm" novalidate>
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" required placeholder="Your name">
+
+            <label for="email" style="margin-top:.6rem">Email</label>
+            <input id="email" type="email" name="email" required placeholder="you@example.com">
+
+            <label for="message" style="margin-top:.6rem">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="How can we help?"></textarea>
+
+            <div style="margin-top:.75rem; display:flex; gap:.5rem; justify-content:flex-end">
+              <button class="btn" type="submit">Send</button>
+            </div>
+            <p id="formStatus" role="status" aria-live="polite" style="margin-top:.5rem; color:var(--muted); font-size:.95rem"></p>
+          </form>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="container" role="contentinfo">
+    <small>© <span id="year"></span> Project — Built with care.</small>
+  </footer>
+
+  <!-- Small JS for progressive enhancement -->
+  <script>
+    (function () {
+      // Set year dynamically
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Theme toggle (persists to localStorage)
+      const toggle = document.getElementById('themeToggle');
+      const root = document.documentElement;
+      const STORAGE_KEY = 'site-theme';
+      const applyTheme = theme => {
+        document.body.setAttribute('data-theme', theme);
+        toggle.setAttribute('aria-pressed', theme === 'dark');
+      };
+
+      // Load stored preference or use system preference
+      const stored = localStorage.getItem(STORAGE_KEY);
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(stored || (prefersDark ? 'dark' : 'light'));
+
+      toggle.addEventListener('click', function () {
+        const current = document.body.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+        localStorage.setItem(STORAGE_KEY, next);
+      });
+
+      // Very small form handler (client-side)
+      const form = document.getElementById('contactForm');
+      const status = document.getElementById('formStatus');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        // Simple validation
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        if (!name || !email) {
+          status.textContent = 'Please fill in the required fields.';
+          status.style.color = 'crimson';
+          return;
+        }
+        status.style.color = '';
+        status.textContent = 'Sending…';
+
+        // Simulate async send (replace with real fetch to your endpoint)
+        window.setTimeout(() => {
+          status.style.color = '';
+          status.textContent = 'Thanks! Your message has been received (demo).';
+          form.reset();
+        }, 800);
+      });
+
+      // Make skip link behave nicely: focus main content when used
+      const skipLink = document.querySelector('.skip-link');
+      skipLink.addEventListener('click', function () {
+        const main = document.getElementById('main');
+        main.focus({ preventScroll: false });
+      });
+
+    })();
+  </script>
+</body>
+</html>
