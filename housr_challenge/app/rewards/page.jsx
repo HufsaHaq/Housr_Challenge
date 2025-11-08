@@ -13,19 +13,21 @@ export default function RewardsPage() {
   const USER_ID = 'student123';
 
   useEffect(() => {
-    loadPerks();
-    loadUserData();
+    loadData();
   }, []);
+
+  async function loadData() {
+    await Promise.all([loadPerks(), loadUserData()]);
+    setLoading(false);
+  }
 
   async function loadPerks() {
     try {
       const response = await fetch(`${API_URL}/api/perks`);
       const data = await response.json();
       setPerks(data);
-      setLoading(false);
     } catch (error) {
       console.error('Error loading perks:', error);
-      setLoading(false);
     }
   }
 
@@ -40,7 +42,7 @@ export default function RewardsPage() {
   }
 
   async function handlePurchase(perk) {
-    if (userData.wallet_balance < perk.cost) {
+    if (!userData || userData.wallet_balance < perk.cost) {
       showNotification('Insufficient wallet balance', 'error');
       return;
     }
@@ -79,11 +81,6 @@ export default function RewardsPage() {
     }, 5000);
   }
 
-  const categories = ['All', ...new Set(perks.map(p => p.category))];
-  const filteredPerks = selectedCategory === 'All' 
-    ? perks 
-    : perks.filter(p => p.category === selectedCategory);
-
   if (loading || !userData) {
     return (
       <div className="min-h-screen bg-gray-50">
@@ -94,6 +91,11 @@ export default function RewardsPage() {
       </div>
     );
   }
+
+  const categories = ['All', ...new Set(perks.map(p => p.category))];
+  const filteredPerks = selectedCategory === 'All' 
+    ? perks 
+    : perks.filter(p => p.category === selectedCategory);
 
   return (
     <div className="min-h-screen bg-gray-50">
