@@ -3,6 +3,7 @@ from flask_cors import CORS
 from datetime import datetime
 import json
 import os
+import math
 
 app = Flask(__name__)
 CORS(app)
@@ -25,6 +26,88 @@ def load_data():
             {'id': 6, 'name': 'Student Event Ticket', 'cost': 15.00, 'category': 'Events'},
             {'id': 7, 'name': 'Book Store Voucher', 'cost': 20.00, 'category': 'Education'},
             {'id': 8, 'name': 'Laundry Service', 'cost': 6.00, 'category': 'Services'}
+        ],
+        'sponsors': [
+            {
+                'id': 1,
+                'name': 'Mooboo Bubble Tea',
+                'category': 'Food & Drink',
+                'address': '47 Oxford Road, Manchester M1 4PF',
+                'lat': 53.4753,
+                'lng': -2.2376,
+                'offers': '10% off with Housr wallet',
+                'phone': '0161 236 8899'
+            },
+            {
+                'id': 2,
+                'name': 'Costa Coffee Manchester',
+                'category': 'Food & Drink',
+                'address': '23 Piccadilly Gardens, Manchester M1 1RG',
+                'lat': 53.4808,
+                'lng': -2.2368,
+                'offers': 'Free pastry with any coffee',
+                'phone': '0161 228 3456'
+            },
+            {
+                'id': 3,
+                'name': 'PureGym Manchester',
+                'category': 'Fitness',
+                'address': '89 Portland Street, Manchester M1 4GX',
+                'lat': 53.4779,
+                'lng': -2.2401,
+                'offers': 'First week free pass',
+                'phone': '0161 819 2345'
+            },
+            {
+                'id': 4,
+                'name': 'Odeon Cinema',
+                'category': 'Entertainment',
+                'address': 'The Printworks, Manchester M4 2BS',
+                'lat': 53.4841,
+                'lng': -2.2399,
+                'offers': '£2 off tickets',
+                'phone': '0333 014 4501'
+            },
+            {
+                'id': 5,
+                'name': 'Waterstones Manchester',
+                'category': 'Education',
+                'address': '91 Deansgate, Manchester M3 2BW',
+                'lat': 53.4809,
+                'lng': -2.2468,
+                'offers': '15% off textbooks',
+                'phone': '0161 837 3000'
+            },
+            {
+                'id': 6,
+                'name': 'Dominos Pizza',
+                'category': 'Food & Drink',
+                'address': '156 Oxford Road, Manchester M13 9GP',
+                'lat': 53.4689,
+                'lng': -2.2345,
+                'offers': '50% off student orders',
+                'phone': '0161 273 7777'
+            },
+            {
+                'id': 7,
+                'name': 'The Gym Group',
+                'category': 'Fitness',
+                'address': '2 Sackville Street, Manchester M1 3LY',
+                'lat': 53.4764,
+                'lng': -2.2355,
+                'offers': 'Student discount 20%',
+                'phone': '0161 237 9191'
+            },
+            {
+                'id': 8,
+                'name': 'Gong Cha Bubble Tea',
+                'category': 'Food & Drink',
+                'address': '8 Stevenson Square, Manchester M1 1DB',
+                'lat': 53.4823,
+                'lng': -2.2348,
+                'offers': 'Buy 2 get 1 free',
+                'phone': '0161 228 6688'
+            }
         ]
     }
 
@@ -41,6 +124,20 @@ def calculate_tier(wallet_spent):
         return 'Silver'
     else:
         return 'Bronze'
+
+def calculate_distance(lat1, lon1, lat2, lon2):
+    """Calculate distance between two points using Haversine formula (in km)"""
+    R = 6371  # Earth's radius in km
+    
+    lat1_rad = math.radians(lat1)
+    lat2_rad = math.radians(lat2)
+    delta_lat = math.radians(lat2 - lat1)
+    delta_lon = math.radians(lon2 - lon1)
+    
+    a = math.sin(delta_lat/2)**2 + math.cos(lat1_rad) * math.cos(lat2_rad) * math.sin(delta_lon/2)**2
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+    
+    return R * c
 
 data = load_data()
 if 'student123' not in data['users']:
@@ -68,6 +165,25 @@ def get_user(user_id):
     if user:
         return jsonify(user)
     return jsonify({'error': 'User not found'}), 404
+
+@app.route('/api/sponsors', methods=['GET'])
+def get_sponsors():
+    data = load_data()
+    user_lat = request.args.get('lat', type=float)
+    user_lng = request.args.get('lng', type=float)
+    
+    sponsors = data.get('sponsors', [])
+    
+    # Calculate distance if user location provided
+    if user_lat is not None and user_lng is not None:
+        for sponsor in sponsors:
+            distance = calculate_distance(user_lat, user_lng, sponsor['lat'], sponsor['lng'])
+            sponsor['distance'] = round(distance, 2)
+        
+        # Sort by distance
+        sponsors = sorted(sponsors, key=lambda x: x.get('distance', float('inf')))
+    
+    return jsonify(sponsors)
 
 @app.route('/api/payment', methods=['POST'])
 def process_payment():
