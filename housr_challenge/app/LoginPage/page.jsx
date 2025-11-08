@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import LogoLink from "../Components/LogoLink.jsx";
+import Navbar from "../navBar/page.jsx";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
@@ -14,6 +15,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen">
+      <Navbar/>
       {/* LEFT SIDE */}
       <div className="w-1/2 bg-green-900 text-white flex flex-col justify-center items-center p-10">
         <div className="text-center">
