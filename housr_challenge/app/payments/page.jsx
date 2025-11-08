@@ -121,7 +121,7 @@ export default function PaymentsPage() {
               
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label htmlFor="type" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="type" className="block text-sm font-medium text-gray-900 mb-2">
                     Payment Type
                   </label>
                   <select
@@ -129,7 +129,7 @@ export default function PaymentsPage() {
                     name="type"
                     value={formData.type}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                     required
                   >
                     <option value="rent">Rent</option>
@@ -141,7 +141,7 @@ export default function PaymentsPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="amount" className="block text-sm font-medium text-gray-900 mb-2">
                     Amount (£)
                   </label>
                   <input
@@ -153,7 +153,7 @@ export default function PaymentsPage() {
                     placeholder="500.00"
                     step="0.01"
                     min="0"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 bg-white text-gray-900 placeholder-gray-500 focus:ring-green-500 focus:border-transparent"
                     required
                   />
                 </div>
