@@ -15,7 +15,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen">
-      <Navbar/>
+      {/* <Navbar/> */}
             {/* LEFT SIDE */}
       <div className="w-1/2 bg-green-900 text-white flex flex-col p-10">
         {/* Logo at the top */}
