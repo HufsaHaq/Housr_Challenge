@@ -268,7 +268,7 @@ export default function AccountPage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
               <div className="space-y-3">
                 <a href="/payments" className="block w-full bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-lg font-medium transition-colors text-center">
-                  Make a Payment
+                  Payment History
                 </a>
                 <a href="/rewards" className="block w-full bg-white hover:bg-gray-50 border border-gray-300 text-gray-700 py-3 px-4 rounded-lg font-medium transition-colors text-center">
                   Browse Rewards

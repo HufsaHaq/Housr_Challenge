@@ -17,11 +17,14 @@ def load_data():
         'users': {},
         'transactions': [],
         'perks': [
-            {'id': 1, 'name': 'Costa Coffee £5 Voucher', 'cost': 50, 'category': 'Food'},
-            {'id': 2, 'name': 'Gym Pass - 1 Week', 'cost': 100, 'category': 'Fitness'},
-            {'id': 3, 'name': 'Cinema Ticket', 'cost': 75, 'category': 'Entertainment'},
-            {'id': 4, 'name': 'Amazon £10 Voucher', 'cost': 100, 'category': 'Shopping'},
-            {'id': 5, 'name': 'Spotify Premium - 1 Month', 'cost': 120, 'category': 'Entertainment'}
+            {'id': 1, 'name': 'Boba Tea', 'cost': 5.50, 'category': 'Food & Drink'},
+            {'id': 2, 'name': 'Costa Coffee', 'cost': 4.20, 'category': 'Food & Drink'},
+            {'id': 3, 'name': 'Cinema Ticket', 'cost': 12.00, 'category': 'Entertainment'},
+            {'id': 4, 'name': 'Gym Day Pass', 'cost': 8.00, 'category': 'Fitness'},
+            {'id': 5, 'name': 'Pizza', 'cost': 10.00, 'category': 'Food & Drink'},
+            {'id': 6, 'name': 'Student Event Ticket', 'cost': 15.00, 'category': 'Events'},
+            {'id': 7, 'name': 'Book Store Voucher', 'cost': 20.00, 'category': 'Education'},
+            {'id': 8, 'name': 'Laundry Service', 'cost': 6.00, 'category': 'Services'}
         ]
     }
 
@@ -29,6 +32,15 @@ def save_data(data):
     with open(DATA_FILE, 'w') as f:
         json.dump(data, f, indent=2)
 
+def calculate_tier(wallet_spent):
+    if wallet_spent >= 500:
+        return 'Platinum'
+    elif wallet_spent >= 200:
+        return 'Gold'
+    elif wallet_spent >= 50:
+        return 'Silver'
+    else:
+        return 'Bronze'
 
 data = load_data()
 if 'student123' not in data['users']:
@@ -36,9 +48,10 @@ if 'student123' not in data['users']:
         'id': 'student123',
         'name': 'Alex Johnson',
         'email': 'alex.j@university.ac.uk',
-        'balance': 0,
-        'total_spent': 0,
+        'wallet_balance': 0,
         'total_earned': 0,
+        'wallet_spent': 0,
+        'rent_payments': 0,
         'payment_streak': 0,
         'tier': 'Bronze'
     }
@@ -80,21 +93,15 @@ def process_payment():
         credits_earned += bonus
     
     # Update user balance
-    user['balance'] += credits_earned
-    user['total_spent'] += amount
+    user['wallet_balance'] += credits_earned
     user['total_earned'] += credits_earned
-    
-    # Update tier
-    if user['total_spent'] >= 5000:
-        user['tier'] = 'Gold'
-    elif user['total_spent'] >= 2000:
-        user['tier'] = 'Silver'
+    user['rent_payments'] += amount
     
     # Record transaction
     transaction = {
         'id': len(data['transactions']) + 1,
         'user_id': user_id,
-        'type': payment_type,
+        'type': 'rent_payment',
         'amount': amount,
         'credits_earned': credits_earned,
         'timestamp': datetime.now().isoformat(),
@@ -107,9 +114,55 @@ def process_payment():
     return jsonify({
         'success': True,
         'credits_earned': credits_earned,
-        'new_balance': user['balance'],
+        'new_balance': user['wallet_balance'],
         'payment_streak': user['payment_streak'],
         'tier': user['tier']
+    })
+
+@app.route('/api/wallet/spend', methods=['POST'])
+def wallet_spend():
+    data = load_data()
+    spend_data = request.json
+    
+    user_id = spend_data.get('user_id')
+    amount = float(spend_data.get('amount'))
+    item_name = spend_data.get('item_name', 'Purchase')
+    
+    if user_id not in data['users']:
+        return jsonify({'error': 'User not found'}), 404
+    
+    user = data['users'][user_id]
+    
+    if user['wallet_balance'] < amount:
+        return jsonify({'error': 'Insufficient wallet balance'}), 400
+    
+    # Deduct from wallet and track spending
+    user['wallet_balance'] -= amount
+    user['wallet_spent'] += amount
+    
+    # Update tier based on wallet spending
+    user['tier'] = calculate_tier(user['wallet_spent'])
+    
+    # Record transaction
+    transaction = {
+        'id': len(data['transactions']) + 1,
+        'user_id': user_id,
+        'type': 'wallet_spend',
+        'amount': -amount,
+        'credits_earned': 0,
+        'timestamp': datetime.now().isoformat(),
+        'description': f'Spent on {item_name}'
+    }
+    
+    data['transactions'].append(transaction)
+    save_data(data)
+    
+    return jsonify({
+        'success': True,
+        'new_balance': user['wallet_balance'],
+        'wallet_spent': user['wallet_spent'],
+        'tier': user['tier'],
+        'message': f'Successfully spent £{amount:.2f}'
     })
 
 @app.route('/api/transactions/<user_id>', methods=['GET'])
@@ -129,59 +182,46 @@ def redeem_credits():
     redemption_data = request.json
     
     user_id = redemption_data.get('user_id')
-    redemption_type = redemption_data.get('type')
-    amount = float(redemption_data.get('amount', 0))
     perk_id = redemption_data.get('perk_id')
     
     if user_id not in data['users']:
         return jsonify({'error': 'User not found'}), 404
     
     user = data['users'][user_id]
+    perk = next((p for p in data['perks'] if p['id'] == perk_id), None)
     
-    if redemption_type == 'rent_discount':
-        if user['balance'] < amount:
-            return jsonify({'error': 'Insufficient credits'}), 400
-        
-        user['balance'] -= amount
-        
-        transaction = {
-            'id': len(data['transactions']) + 1,
-            'user_id': user_id,
-            'type': 'redemption',
-            'amount': -amount,
-            'credits_earned': 0,
-            'timestamp': datetime.now().isoformat(),
-            'description': f'Applied £{amount} to rent'
-        }
-        data['transactions'].append(transaction)
-        
-    elif redemption_type == 'perk':
-        perk = next((p for p in data['perks'] if p['id'] == perk_id), None)
-        if not perk:
-            return jsonify({'error': 'Perk not found'}), 404
-        
-        if user['balance'] < perk['cost']:
-            return jsonify({'error': 'Insufficient credits'}), 400
-        
-        user['balance'] -= perk['cost']
-        
-        transaction = {
-            'id': len(data['transactions']) + 1,
-            'user_id': user_id,
-            'type': 'redemption',
-            'amount': -perk['cost'],
-            'credits_earned': 0,
-            'timestamp': datetime.now().isoformat(),
-            'description': f'Redeemed: {perk["name"]}'
-        }
-        data['transactions'].append(transaction)
+    if not perk:
+        return jsonify({'error': 'Item not found'}), 404
+    
+    if user['wallet_balance'] < perk['cost']:
+        return jsonify({'error': 'Insufficient wallet balance'}), 400
+    
+    # Deduct from wallet and track spending
+    user['wallet_balance'] -= perk['cost']
+    user['wallet_spent'] += perk['cost']
+    
+    # Update tier based on wallet spending
+    user['tier'] = calculate_tier(user['wallet_spent'])
+    
+    transaction = {
+        'id': len(data['transactions']) + 1,
+        'user_id': user_id,
+        'type': 'wallet_spend',
+        'amount': -perk['cost'],
+        'credits_earned': 0,
+        'timestamp': datetime.now().isoformat(),
+        'description': f'Purchased: {perk["name"]}'
+    }
+    data['transactions'].append(transaction)
     
     save_data(data)
     
     return jsonify({
         'success': True,
-        'new_balance': user['balance'],
-        'message': 'Redemption successful!'
+        'new_balance': user['wallet_balance'],
+        'wallet_spent': user['wallet_spent'],
+        'tier': user['tier'],
+        'message': 'Purchase successful!'
     })
 
 if __name__ == '__main__':
