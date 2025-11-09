@@ -11,7 +11,7 @@ export default function LoginPage() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    alert(`Username: ${username}\nPassword: ${password}`);
+    window.location.href = "/account";
   };
 
   return (
