@@ -11,7 +11,7 @@ export default function Navbar() {
 
 	// Navigation items array
 	const navItems = [
-		// { name: "Housr Cherry", href: "/" },
+		{ name: "Housr Prize", href: "/HousrCherryPage" },
 		{ name: "Sponsors", href: "/sponsors" },
 		{ name: "Payments", href: "/payments" },
 		{ name: "Rewards", href: "/rewards" },
