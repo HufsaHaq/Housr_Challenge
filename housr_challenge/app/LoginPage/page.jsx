@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import LogoLink from "../Components/LogoLink.jsx";
 import Navbar from "../navBar/page.jsx";
+import Link from "next/link";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
@@ -28,16 +29,16 @@ export default function LoginPage() {
           <h1 className="text-6xl font-bold mb-4 text-center">Welcome Back to</h1>
           <h1 className="text-6xl font-bold mb-4 text-center">Housr Cherry</h1>
           <p className="text-lg text-gray-200 max-w-md text-center">
-            Get coupons off your favourite brands by renting a property
+            Ready to save with coupons from your favourite stores?
           </p>
         </div>
       </div>
 
       {/* RIGHT SIDE */}
-      <div className="w-1/2 flex justify-center items-center bg-gray-100">
+      <div className="w-1/2 flex justify-center items-center bg-green-200 bg-gray-100">
         <form
           onSubmit={handleLogin}
-          className="bg-white p-10 rounded-2xl shadow-lg w-96"
+          className="bg-gray-100 p-10 rounded-2xl shadow-lg w-96"
         >
           <h2 className="text-2xl font-semibold mb-6 text-center text-gray-700">
             Login
@@ -49,22 +50,26 @@ export default function LoginPage() {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="w-full text-green-600 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
               placeholder="Enter your username"
               required
             />
           </div>
 
-          <div className="mb-6">
+          <div className="mb-5">
             <label className="block text-gray-600 mb-2">Password</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="w-full text-green-600 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
               placeholder="Enter your password"
               required
             />
+          </div>
+
+          <div className="text-center mb-3">
+            <Link className="text-green-600 hover:text-green-800 underline" href="/SignUpPage">Not Signed Up? Click Here</Link>
           </div>
 
           <button
