@@ -20,7 +20,7 @@ def load_data():
         'perks': [
             {'id': 1, 'name': 'Free McDonald Cheesburger', 'cost': 1.00, 'category': 'Food & Drink',
                 "description": "Get a free McDonald Cheesburger from your neareset store! Lasts 1 week"},
-            {'id': 2, 'name': 'Costa Coffee 15% Off', 'cost': 1.50, 'category': 'Food & Drink',
+            {'id': 2, 'name': 'Costa Coffee 10% Off', 'cost': 1.50, 'category': 'Food & Drink',
                 "description": "Get 15% Off when you next make a purchase at Costa Coffee! Lasts 1 week"},
             {'id': 3, 'name': 'Odean Cinema Ticket 20% Off', 'cost': 2.50, 'category': 'Entertainment',
                 "description": "Get 20% Off any cinema ticket at Odean. Works with up to 2 tickets at a time! Lasts 1 week"},

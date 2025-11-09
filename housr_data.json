@@ -4,9 +4,9 @@
       "id": "student123",
       "name": "Alex Johnson",
       "email": "alex.j@university.ac.uk",
-      "wallet_balance": 20.0,
+      "wallet_balance": 18.5,
       "total_earned": 25.0,
-      "wallet_spent": 5.0,
+      "wallet_spent": 6.5,
       "rent_payments": 500.0,
       "payment_streak": 1,
       "tier": "Bronze"
@@ -48,6 +48,15 @@
       "credits_earned": 0,
       "timestamp": "2025-11-09T11:09:22.607500",
       "description": "Purchased: Odean Cinema Ticket 20% Off"
+    },
+    {
+      "id": 5,
+      "user_id": "student123",
+      "type": "wallet_spend",
+      "amount": -1.5,
+      "credits_earned": 0,
+      "timestamp": "2025-11-09T11:41:32.191073",
+      "description": "Purchased: Costa Coffee 15% Off"
     }
   ],
   "perks": [
