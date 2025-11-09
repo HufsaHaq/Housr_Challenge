@@ -12,18 +12,23 @@ import React, { useRef, useEffect } from 'react';
 import Link from "next/link";
 
 const events = [
-  {
-    Name: 'McDonald', img: "../Images/McDonald's_logo.png", link: 'https://www.mcdonalds.com/', bgColor: "red"},
-  { Name: "Wendy's", img: "../Images/Wendy's_logo.png", link: 'https://www.wendys.com/', bgColor: "red"},
-  { Name: 'KFC', img: "../Images/kfc_img.png", link: 'https://www.kfc.co.uk/', bgColor: "red"},
-  { Name: 'Burger King', img: "../Images/Burger_King_img.png", link: 'https://www.burgerking.co.uk/', bgColor: "red"},
+  { Name: 'McDonald', img: "../Images/McDonald's_logo.png", link: 'https://www.mcdonalds.com/', bgColor: "pink"},
   { Name: "Amazon", img: "../Images/Amazon_logo.png", link: "https://www.amazon.co.uk/", bgColor: "orange"},
   { Name: "Asos", img: "../Images/Asos_logo.png", link: "https://www.asos.com/", bgColor: "yellow"},
   { Name: "Apple", img: "../Images/apple_logo.png", link: "https://www.apple.com/uk/", bgColor: "lightblue"},
   { Name: "Deliveroo", img: "../Images/deliveroo_logo.png", link: "https://deliveroo.co.uk/", bgColor: "lightgreen"},
-  { Name: "Wagamama", img: "../Images/wagamama_logo.png", link: "https://www.wagamama.com/", bgColor: "red"},
+  { Name: "Wagamama", img: "../Images/wagamama_logo.png", link: "https://www.wagamama.com/", bgColor: "pink"},
+  { Name: "Temu", img: "../Images/temu_logo.png", link: "https://www.temu.com/",  bgColor: "orange"},
+  { Name: "Dominos", img: "../Images/dominos_logo.png", link: "https://www.dominos.co.uk/", bgColor: "pink"},
+  { Name: "Shein", img: "../Images/shein_logo_png.png", link: "https://www.shein.co.uk/", bgColor: "yellow"},
+  { Name: 'KFC', img: "../Images/kfc_img.png", link: 'https://www.kfc.co.uk/', bgColor: "pink"},
+  { Name: 'Burger King', img: "../Images/Burger_King_img.png", link: 'https://www.burgerking.co.uk/', bgColor: "pink"},
+  { Name: "Just Eat", img: "../Images/just_eat_logo.png", link: "https://www.just-eat.co.uk/", bgColor: "lightgreen"},
+  { Name: "Primark", img: "../Images/primark_logo.png", link: "https://www.primark.com/en-gb", bgColor: "yellow"},
+  { Name: "Wendy's", img: "../Images/Wendy's_logo.png", link: 'https://www.wendys.com/', bgColor: "pink"},
+  { Name: "Samsung", img: "../Images/samsung_logo.png", link: "https://www.samsung.com/uk/", bgColor: "lightblue"},
   // Add more events as needed 
-  // { Name: "", img: "../Images/", link: ""},
+  // { Name: "", img: "../Images/", link: "", bgColor: ""},
 ];
 
 const InfiniteCarousel = ({ speed = 1, cardWidth = 200, gap = 20 }) => {

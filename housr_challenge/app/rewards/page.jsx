@@ -1,8 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
 import Navbar from "../navBar/page.jsx";
+import PopupModal from "../Components/PopupModal";
 
 export default function RewardsPage() {
+  const [showModal, setShowModal] = useState(false);
+  const [selectedPerk, setSelectedPerk] = useState(null);
   const [perks, setPerks] = useState([]);
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -11,6 +14,12 @@ export default function RewardsPage() {
 
   const API_URL = 'http://localhost:5000';
   const USER_ID = 'student123';
+
+  // const handlePurchase = (perk) => {
+  //   console.log("Purchasing:", perk);
+  //   // your purchase logic here
+  //   setSelectedPerk(null); // close after purchase
+  // };
 
   useEffect(() => {
     loadData();
@@ -72,6 +81,7 @@ export default function RewardsPage() {
       console.error('Error purchasing:', error);
       showNotification('An error occurred. Please try again.', 'error');
     }
+    setSelectedPerk(null); // close after purchase
   }
 
   function showNotification(message, type) {
@@ -153,44 +163,54 @@ export default function RewardsPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredPerks.map(perk => {
-            const canAfford = userData.wallet_balance >= perk.cost;
-            
-            return (
-              <div 
-                key={perk.id} 
-                className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
-              >
-                <div className="p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900">{perk.name}</h3>
-                      <div className="text-sm text-gray-600 mt-1">{perk.category}</div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-2xl font-bold text-gray-900">
-                        £{perk.cost.toFixed(2)}
-                      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredPerks.map((perk) => {
+          const canAfford = userData.wallet_balance >= perk.cost;
+
+          return (
+            <div
+              key={perk.id}
+              className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
+            >
+              <div className="p-6">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">{perk.name}</h3>
+                    <div className="text-sm text-gray-600 mt-1">{perk.category}</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-2xl font-bold text-gray-900">
+                      £{perk.cost.toFixed(2)}
                     </div>
                   </div>
-
-                  <button
-                    onClick={() => handlePurchase(perk)}
-                    disabled={!canAfford}
-                    className={`w-full py-3 px-4 rounded-lg font-medium transition-colors ${
-                      canAfford
-                        ? 'bg-green-600 hover:bg-green-700 text-white'
-                        : 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                    }`}
-                  >
-                    {canAfford ? 'Purchase' : 'Insufficient Balance'}
-                  </button>
                 </div>
+
+                <button
+                  onClick={() => setSelectedPerk(perk)}
+                  disabled={!canAfford}
+                  className={`w-full py-3 px-4 rounded-lg font-medium transition-colors ${
+                    canAfford
+                      ? "bg-green-600 hover:bg-green-700 text-white"
+                      : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                  }`}
+                >
+                  {canAfford ? "Purchase" : "Insufficient Balance"}
+                </button>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Single modal outside the map */}
+      <PopupModal
+        show={!!selectedPerk}
+        onClose={() => setSelectedPerk(null)}
+        title={selectedPerk?.name}
+        onPurchase={() => handlePurchase(selectedPerk)} // ✅ new prop
+      >
+        <p>{selectedPerk?.description}</p>
+      </PopupModal>
 
         {filteredPerks.length === 0 && (
           <div className="text-center py-12 text-gray-500">

@@ -18,14 +18,31 @@ def load_data():
         'users': {},
         'transactions': [],
         'perks': [
-            {'id': 1, 'name': 'Boba Tea', 'cost': 5.50, 'category': 'Food & Drink'},
-            {'id': 2, 'name': 'Costa Coffee', 'cost': 4.20, 'category': 'Food & Drink'},
-            {'id': 3, 'name': 'Cinema Ticket', 'cost': 12.00, 'category': 'Entertainment'},
-            {'id': 4, 'name': 'Gym Day Pass', 'cost': 8.00, 'category': 'Fitness'},
-            {'id': 5, 'name': 'Pizza', 'cost': 10.00, 'category': 'Food & Drink'},
-            {'id': 6, 'name': 'Student Event Ticket', 'cost': 15.00, 'category': 'Events'},
-            {'id': 7, 'name': 'Book Store Voucher', 'cost': 20.00, 'category': 'Education'},
-            {'id': 8, 'name': 'Laundry Service', 'cost': 6.00, 'category': 'Services'}
+            {'id': 1, 'name': 'Free McDonald Cheesburger', 'cost': 1.00, 'category': 'Food & Drink',
+                "description": "Get a free McDonald Cheesburger from your neareset store! Lasts 1 week"},
+            {'id': 2, 'name': 'Costa Coffee 15% Off', 'cost': 1.50, 'category': 'Food & Drink',
+                "description": "Get 15% Off when you next make a purchase at Costa Coffee! Lasts 1 week"},
+            {'id': 3, 'name': 'Odean Cinema Ticket 20% Off', 'cost': 2.50, 'category': 'Entertainment',
+                "description": "Get 20% Off any cinema ticket at Odean. Works with up to 2 tickets at a time! Lasts 1 week"},
+            {'id': 4, 'name': 'Gym Day Pass', 'cost': 3.00, 'category': 'Fitness',
+                "description": "Use the Gym for as long as you like for a day! Lasts 1 week"},
+            {'id': 5, 'name': 'Dominos 15% Off', 'cost': 2.00, 'category': 'Food & Drink',
+                "description": "Get 15% Off when you next spend in Dominos! Maximum discount stops at £20. Lasts 1 week"},
+            {'id': 6, 'name': 'Free Student Union Concert', 'cost': 15.00, 'category': 'Events',
+                "description": "Go to any concert at the Student Academy, hosted by the university! Only 1 ticket included. Lasts 1 week"},
+            {'id': 7, 'name': 'WaterStones 25% Off', 'cost': 3.00, 'category': 'Education',
+                "description": "Get 25% Off when you next spend at WaterStones! Maximum discount of £30. Lasts 1 week"},
+            {'id': 8, 'name': 'Free 6-inch Subway Sandwich', 'cost': 2.50, 'category': 'Food & Drink',
+                "description": "Get a free 6-inch Subway Sandwich! Lasts 1 week"},
+            {'id': 9, 'name': 'Food & Drink Scratch card', 'cost': 3.00, 'category': 'Food & Drink',
+                "description": "Randomly get one of the amazing prizes from the list below!\n- 30% Off McDonald's Orders\n- 30% Off Subway Orders\n- 20% Off StarBucks Order\n- 30% Off Costa Coffee Order\n- Free 12-inch Dominos Pizza\nLasts 1 week"},
+            {'id': 10, 'name': 'Delivery Scratch card', 'cost': 3.00, 'category': 'Food & Drink',
+                "description": "Randomly get one of the amazing prizes from the list below!\n- 30% Deliveroo\n- 30% Off Uber Eats\n- 30% Off Just Eat\nLasts 1 week"},
+            {'id': 11, 'name': 'Entertainment Scratch card', 'cost': 3.00, 'category': 'Entertainment',
+                "description": "Randomly get one of the amazing prizes from the list below!\n- 30% Odean Tickets\n- 30% Off Student Union Concerts\n -30% Off YouTube Premium\nLasts 1 week."},
+
+
+
         ],
         'sponsors': [
             {

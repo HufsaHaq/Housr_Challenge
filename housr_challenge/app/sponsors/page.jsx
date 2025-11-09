@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Navbar from "../navBar/page.jsx";
 import InfiniteCarousel from '../Components/InfiniteCarousel';
+import PopupModal from "../Components/PopupModal";
 
 export default function SponsorsPage() {
   const [sponsors, setSponsors] = useState([]);

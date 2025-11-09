@@ -4,12 +4,12 @@ import Navbar from "../navBar/page.jsx";
 
 export default function RewardsWheel() {
   const wheelPrizes = [
-    { name: "£5 Credit", value: 5, color: "#10b981" },
-    { name: "£10 Credit", value: 10, color: "#3b82f6" },
-    { name: "£15 Credit", value: 15, color: "#8b5cf6" },
-    { name: "£20 Credit", value: 20, color: "#f59e0b" },
-    { name: "£25 Credit", value: 25, color: "#ef4444" },
-    { name: "£50 Bonus", value: 50, color: "#ec4899" },
+    { name: "£1 Credit", value: 1, color: "#10b981" },
+    { name: "£2 Credit", value: 2, color: "#3b82f6" },
+    { name: "£1 Credit", value: 1, color: "#8b5cf6" },
+    { name: "£2 Credit", value: 2, color: "#f59e0b" },
+    { name: "£1 Credit", value: 1, color: "#ef4444" },
+    { name: "£5 Bonus", value: 5, color: "#ec4899" },
   ];
 
   const [rotation, setRotation] = useState(0);
@@ -99,7 +99,7 @@ export default function RewardsWheel() {
       
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Daily Rewards Wheel</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Weekly Rewards Wheel</h1>
           <p className="text-gray-600">Spin to win wallet credits and boost your balance!</p>
         </div>
 
@@ -190,7 +190,7 @@ export default function RewardsWheel() {
 
             {spinsLeft === 0 && (
               <p className="mt-4 text-sm text-gray-600">
-                Come back tomorrow for more spins!
+                Come back next week for more spins!
               </p>
             )}
           </div>
@@ -203,13 +203,13 @@ export default function RewardsWheel() {
               <svg className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
               </svg>
-              <span>Get 3 free spins daily to win wallet credits</span>
+              <span>Get 3 free spins weekly to win wallet credits</span>
             </li>
             <li className="flex items-start">
               <svg className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
               </svg>
-              <span>Win between £5 to £50 in wallet credits</span>
+              <span>Win between £1 to £5 in wallet credits</span>
             </li>
             <li className="flex items-start">
               <svg className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
