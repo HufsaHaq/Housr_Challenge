@@ -4,12 +4,12 @@
       "id": "student123",
       "name": "Alex Johnson",
       "email": "alex.j@university.ac.uk",
-      "wallet_balance": 340.65000000000003,
-      "total_earned": 345.85,
-      "wallet_spent": 5.199999999999999,
-      "rent_payments": 6770.0,
-      "payment_streak": 5,
-      "tier": "Bronze"
+      "wallet_balance": 239.65000000000003,
+      "total_earned": 373.35,
+      "wallet_spent": 133.7,
+      "rent_payments": 7270.0,
+      "payment_streak": 6,
+      "tier": "Silver"
     }
   },
   "transactions": [
@@ -102,6 +102,123 @@
       "credits_earned": 0,
       "timestamp": "2025-11-09T01:16:22.877075",
       "description": "Spent on Spin Wheel Bonus: \u00a325 Credit"
+    },
+    {
+      "id": 11,
+      "user_id": "student123",
+      "type": "wallet_spend",
+      "amount": 25.0,
+      "credits_earned": 0,
+      "timestamp": "2025-11-09T08:40:11.196328",
+      "description": "Spent on Spin Wheel Bonus: \u00a325 Credit"
+    },
+    {
+      "id": 12,
+      "user_id": "student123",
+      "type": "wallet_spend",
+      "amount": -5.5,
+      "credits_earned": 0,
+      "timestamp": "2025-11-09T08:43:49.599226",
+      "description": "Purchased: Boba Tea"
+    },
+    {
+      "id": 13,
+      "user_id": "student123",
+      "type": "wallet_spend",
+      "amount": -12.0,
+      "credits_earned": 0,
+      "timestamp": "2025-11-09T08:44:08.054876",
+      "description": "Purchased: Cinema Ticket"
+    },
+    {
+      "id": 14,
+      "user_id": "student123",
+      "type": "wallet_spend",
+      "amount": -8.0,
+      "credits_earned": 0,
+      "timestamp": "2025-11-09T08:44:12.316418",
+      "description": "Purchased: Gym Day Pass"
+    },
+    {
+      "id": 15,
+      "user_id": "student123",
+      "type": "wallet_spend",
+      "amount": -12.0,
+      "credits_earned": 0,
+      "timestamp": "2025-11-09T08:44:14.534702",
+      "description": "Purchased: Cinema Ticket"
+    },
+    {
+      "id": 16,
+      "user_id": "student123",
+      "type": "wallet_spend",
+      "amount": -12.0,
+      "credits_earned": 0,
+      "timestamp": "2025-11-09T08:44:19.765757",
+      "description": "Purchased: Cinema Ticket"
+    },
+    {
+      "id": 17,
+      "user_id": "student123",
+      "type": "wallet_spend",
+      "amount": -12.0,
+      "credits_earned": 0,
+      "timestamp": "2025-11-09T08:44:22.647239",
+      "description": "Purchased: Cinema Ticket"
+    },
+    {
+      "id": 18,
+      "user_id": "student123",
+      "type": "wallet_spend",
+      "amount": -12.0,
+      "credits_earned": 0,
+      "timestamp": "2025-11-09T08:44:23.764498",
+      "description": "Purchased: Cinema Ticket"
+    },
+    {
+      "id": 19,
+      "user_id": "student123",
+      "type": "wallet_spend",
+      "amount": -20.0,
+      "credits_earned": 0,
+      "timestamp": "2025-11-09T08:44:29.637296",
+      "description": "Purchased: Book Store Voucher"
+    },
+    {
+      "id": 20,
+      "user_id": "student123",
+      "type": "wallet_spend",
+      "amount": -20.0,
+      "credits_earned": 0,
+      "timestamp": "2025-11-09T08:44:31.272170",
+      "description": "Purchased: Book Store Voucher"
+    },
+    {
+      "id": 21,
+      "user_id": "student123",
+      "type": "wallet_spend",
+      "amount": -20.0,
+      "credits_earned": 0,
+      "timestamp": "2025-11-09T08:44:33.223366",
+      "description": "Purchased: Book Store Voucher"
+    },
+    {
+      "id": 22,
+      "user_id": "student123",
+      "type": "wallet_spend",
+      "amount": -20.0,
+      "credits_earned": 0,
+      "timestamp": "2025-11-09T08:44:34.208584",
+      "description": "Purchased: Book Store Voucher"
+    },
+    {
+      "id": 23,
+      "user_id": "student123",
+      "type": "rent_payment",
+      "amount": 500.0,
+      "credits_earned": 27.5,
+      "timestamp": "2025-11-09T09:15:15.131545",
+      "description": "Rent Payment"
     }
   ],
   "perks": [

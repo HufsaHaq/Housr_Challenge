@@ -24,7 +24,7 @@ export default function Navbar() {
 				<div className="flex items-center justify-between h-16">
 					{/* Logo */}
 					<Link
-						href="/"
+						href="/account"
 						className="flex items-center space-x-2 text-green-600 hover:text-green-700 transition-colors"
 					>
 						<svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -46,14 +46,14 @@ export default function Navbar() {
 						))}
 					</div>
 
-					{/* Desktop Login Button */}
+					{/* Desktop Login Button
 					<div className="hidden md:block">
 						<Link href="/LoginPage">
 							<button className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
 								Login
 							</button>
 						</Link>
-					</div>
+					</div> */}
 
 					{/* Mobile Menu Button */}
 					<button
